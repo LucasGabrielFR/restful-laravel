@@ -1,59 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><img src="https://site.drugovich.com.br/_nuxt/img/dragao_rodape.42dfbbe.png" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sobre o Projeto
 
-## About Laravel
+Este projeto é uma API de clientes para fins de testes da Drugovich
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Cenário
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Em nossa auto peças surgiu a demanda que nossos gerentes pudessem separar nossos clientes em grupos distintos. Nossos gerentes têm dois níveis.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requisitos
 
-## Learning Laravel
+- Um cliente deve pertencer a apenas um grupo;
+- Gerentes precisam estar autenticados;
+- Gerentes de nível um pode apenas visualizar grupos, adicionar/remover clientes;
+- Gerentes de nível dois são os únicos que podem criar, editar e excluir grupos;
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tecnologias Usadas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **[PHP 8](https://www.php.net/)**
+- **[Laravel 9](https://laravel.com/)**
+- **[SQLite](https://www.sqlite.org/index.html)**
+- **[jwt-auth](https://github.com/tymondesigns/jwt-auth)**
 
-## Laravel Sponsors
+## Modelagem de dados
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Clients: id, cnpj, name, foundation_date, group_id, created_at, updated_at;
+- Managers: id, name, email, level, password, created_at, updated_at;
+- Groups: id, name, created_at, updated_at;
 
-### Premium Partners
+![drugovich](https://user-images.githubusercontent.com/31490923/164322529-e135b3cd-e823-460f-981f-fbfaf4d4c1ea.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Iniciando o Projeto
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ 1. Clone esse repositório na sua máquina local
+ 2. Acesse a pasta api-drugovich
+ 3. Dê um **$ composer install**
+ 4. Execute o servidor:  **$ php artisan serve**
+ 5. O banco de dados está sendo enviado via arquivo por se tratar do SQLite (escolhido para este projeto justamente por ser mais simples e o projeto não exigir muito),     as tabelas clients e managers já estão preenchidas
 
 ## Security Vulnerabilities
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained();
+            $table->foreignId('group_id')->nullable()->constrained();
             $table->string('name');
             $table->string('cnpj')->unique();
             $table->date('foundation_date');

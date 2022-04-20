@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->group->create($request->all());
     }
 
     /**
@@ -43,7 +44,7 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        return $group->with('clients')->first();
+        return $group->with('clients')->find($group->id);
     }
 
     /**
@@ -53,9 +54,10 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Group $group)
     {
-        //
+        $group->update($request->all());
+        return $group;
     }
 
     /**
@@ -64,8 +66,18 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        if ($group != null) {
+            $clients = $group->clients;
+            foreach ($clients as $client) {
+                $client->group_id = null;
+                $client->save();
+            }
+            $group->delete();
+            return response()->json(['message' => 'Group deleted']);
+        }else{
+            return response()->json(['message' => 'Group not found']);
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -67,5 +68,17 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateClientGroup(Request $request, Client $client)
+    {
+        $group = Group::find($request->group_id);
+        if($group) {
+            $client->group()->associate($group);
+            $client->save();
+            return response()->json(['success' => 'Client added to group ' . $group->name], 200);
+        }else{
+            return response()->json(['error' => "Group doesn't exists"], 400);
+        }
     }
 }

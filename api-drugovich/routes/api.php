@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/managers', \App\Http\Controllers\Api\ManagerController::class);
 Route::apiResource('/groups', \App\Http\Controllers\Api\GroupController::class);
 Route::apiResource('/clients', \App\Http\Controllers\Api\ClientController::class);
+
+Route::post('/clients/{client}/updateClientGroup', \App\Http\Controllers\Api\ClientController::class.'@updateClientGroup');

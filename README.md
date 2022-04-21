@@ -38,10 +38,56 @@ Em nossa auto peças surgiu a demanda que nossos gerentes pudessem separar nosso
  4. Execute o servidor:  **$ php artisan serve**
  5. O banco de dados está sendo enviado via arquivo por se tratar do SQLite (escolhido para este projeto justamente por ser mais simples e o projeto não exigir muito),     as tabelas clients e managers já estão preenchidas
 
-## Security Vulnerabilities
+## Rotas
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Clients**
+- GET /clients - Lista todos os clientes
+- GET /clients/{id} - Lista um cliente
+- POST /clients/{id}/updateClientGroup - Atualiza grupo do cliente (Requer autenticação)
+```python
+##REQUISIÇÃO
+{
+ "group_id": "1",
+}
+```
+**Managers**
+- GET /managers - Lista todos os gerentes
+- GET /managers/{id} - Lista um Gerente
 
-## License
+**Login**
+- POST /login - Autentica gerente (Retorna Bearer token)
+Exemplo de requisição json:
+```python
+##REQUISIÇÃO
+{
+ "email": "example@example.com",
+ "password": "123456"
+}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##RESPOSTA
+{
+   "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwNDI3NzQ3LCJleHAiOjE2NTA0MzEzNDcsIm5iZiI6MTY1MDQyNzc0NywianRpIjoibmxLbHc2WGVrSWNaNHJhbSIsInN1YiI6IjEiLCJwcnYiOiI2ZTY4OTYyMjU0ZDZkZjQwMWQwM2IzMGEzOWUxNjIzNjRlMTY0NmNkIn0.IwZGoBcx3HA-xa2qzbdhLlQHbUbQJgbI6b2He5uVCjw",
+   "token_type": "bearer",
+   "expires_in": 3600
+}
+```
+
+**Groups(Requer autenticação Bearer Token)**
+- GET /groups - Lista todos os grupos
+- GET /groups/{id} - Lista um grupo com seus participantes
+- POST /groups - Cria grupo
+```python
+##REQUISIÇÃO
+{
+ "name": "grupo teste",
+}
+```
+- PUT /groups/{id} - Atualiza grupo
+```python
+##REQUISIÇÃO
+{
+ "name": "grupo teste",
+}
+```
+- DELETE /groups/{id} - Deleta grupo
+

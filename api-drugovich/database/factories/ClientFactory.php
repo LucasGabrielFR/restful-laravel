@@ -19,7 +19,7 @@ class ClientFactory extends Factory
         return [
             'name' => $this->faker->name,
             'cnpj' => $this->faker->cnpj,
-            'group_id' => $this->faker->numberBetween(1, 2),
+            'group_id' => null,
             'foundation_date' => $this->faker->date,
             'deleted_at' => null,
         ];

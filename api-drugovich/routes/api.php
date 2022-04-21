@@ -14,14 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::apiResource('/managers', \App\Http\Controllers\Api\ManagerController::class);
 Route::apiResource('/groups', \App\Http\Controllers\Api\GroupController::class)->middleware('jwt.auth');
 Route::apiResource('/clients', \App\Http\Controllers\Api\ClientController::class);
 
-Route::post('/clients/{client}/updateClientGroup', \App\Http\Controllers\Api\ClientController::class.'@updateClientGroup');
+Route::post('/clients/{client}/updateClientGroup', \App\Http\Controllers\Api\ClientController::class.'@updateClientGroup')->middleware('jwt.auth');
 
 Route::post('/login', \App\Http\Controllers\Api\AuthController::class.'@login');
